@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jay Fuller's Chicken Shack — Coming Soon</title>
+<meta name="description" content="Leave Fuller Than You Came. Hand-breaded chicken, tropical heat, and good vibes — opening soon.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Kalam:wght@400;700&family=Pacifico&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #2a8f8c;
+    --teal-deep: #1d6b69;
+    --teal-dark: #134a48;
+    --cream: #f4ecd6;
+    --cream-warm: #ecdfbf;
+    --red: #c0392b;
+    --red-deep: #8b1e14;
+    --yellow: #e8a91c;
+    --sand: #d8c596;
+    --ink: #1a1612;
+    --green: #4a7c3a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Kalam', cursive;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(232, 169, 28, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(42, 143, 140, 0.08) 0%, transparent 50%);
+  }
+
+  /* paper grain texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0 0.2 0 0 0 0.3 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; }
+
+  /* ========= HERO ========= */
+  .hero {
+    min-height: 100vh;
+    padding: 32px 24px 60px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background:
+      linear-gradient(180deg, rgba(244, 236, 214, 0) 0%, rgba(244, 236, 214, 0.4) 100%),
+      repeating-linear-gradient(90deg, transparent 0, transparent 40px, rgba(0,0,0,0.02) 40px, rgba(0,0,0,0.02) 41px);
+  }
+
+  .palm-leaf {
+    position: absolute;
+    font-size: 8rem;
+    opacity: 0.15;
+    pointer-events: none;
+    user-select: none;
+  }
+  .palm-leaf.tl { top: -20px; left: -30px; transform: rotate(-20deg); }
+  .palm-leaf.tr { top: -20px; right: -30px; transform: rotate(20deg) scaleX(-1); }
+
+  .badge-top {
+    display: inline-block;
+    background: var(--red);
+    color: var(--cream);
+    padding: 8px 24px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    letter-spacing: 3px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    transform: rotate(-2deg);
+    box-shadow: 4px 4px 0 var(--ink);
+    margin-bottom: 32px;
+    animation: wobble 4s ease-in-out infinite;
+  }
+
+  @keyframes wobble {
+    0%, 100% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+  }
+
+  .sign-board {
+    background: var(--cream-warm);
+    border: 6px solid var(--ink);
+    padding: 40px 60px;
+    max-width: 900px;
+    width: 100%;
+    box-shadow:
+      8px 8px 0 var(--red-deep),
+      8px 8px 30px rgba(0,0,0,0.3);
+    position: relative;
+    transform: rotate(-1deg);
+    background-image:
+      repeating-linear-gradient(90deg, transparent 0, transparent 8px, rgba(139, 69, 19, 0.04) 8px, rgba(139, 69, 19, 0.04) 9px),
+      repeating-linear-gradient(0deg, transparent 0, transparent 60px, rgba(139, 69, 19, 0.06) 60px, rgba(139, 69, 19, 0.06) 61px);
+  }
+
+  .sign-board::before,
+  .sign-board::after {
+    content: '●';
+    position: absolute;
+    color: var(--ink);
+    font-size: 1.5rem;
+  }
+  .sign-board::before { top: 8px; left: 12px; }
+  .sign-board::after { top: 8px; right: 12px; }
+
+  .title-line1 {
+    font-family: 'Pacifico', cursive;
+    color: var(--red);
+    font-size: clamp(3rem, 9vw, 6.5rem);
+    line-height: 0.9;
+    text-shadow: 3px 3px 0 rgba(0,0,0,0.15);
+    margin-bottom: 8px;
+  }
+
+  .title-line2 {
+    font-family: 'Alfa Slab One', serif;
+    color: var(--ink);
+    font-size: clamp(2rem, 6vw, 4rem);
+    letter-spacing: 2px;
+    line-height: 1;
+    margin-bottom: 24px;
+  }
+
+  .chicken-icon {
+    display: inline-block;
+    margin-left: 12px;
+    vertical-align: middle;
+  }
+
+  .slogan-bar {
+    background: var(--cream);
+    border-top: 2px dashed var(--ink);
+    border-bottom: 2px dashed var(--ink);
+    padding: 12px 0;
+    margin: 16px -20px 0;
+  }
+
+  .slogan {
+    font-family: 'Pacifico', cursive;
+    color: var(--red);
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    letter-spacing: 1px;
+  }
+
+  .slogan .dash {
+    color: var(--ink);
+    margin: 0 12px;
+    font-family: 'Oswald', sans-serif;
+  }
+
+  /* ========= COUNTDOWN ========= */
+  .countdown-section {
+    margin-top: 60px;
+    text-align: center;
+    max-width: 700px;
+    width: 100%;
+  }
+
+  .countdown-label {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    letter-spacing: 6px;
+    color: var(--teal-deep);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .countdown {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+
+  .count-box {
+    background: var(--teal);
+    color: var(--cream);
+    padding: 20px 8px;
+    border: 4px solid var(--ink);
+    box-shadow: 5px 5px 0 var(--ink);
+    transition: transform 0.2s;
+  }
+  .count-box:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--ink); }
+
+  .count-num {
+    font-family: 'Alfa Slab One', serif;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    line-height: 1;
+    color: var(--yellow);
+  }
+
+  .count-unit {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.7rem;
+    margin-top: 8px;
+  }
+
+  /* ========= SECTIONS ========= */
+  section {
+    padding: 80px 24px;
+    position: relative;
+  }
+
+  .section-tag {
+    display: inline-block;
+    background: var(--yellow);
+    color: var(--ink);
+    padding: 6px 18px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    transform: rotate(-1deg);
+    box-shadow: 3px 3px 0 var(--ink);
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    font-family: 'Pacifico', cursive;
+    color: var(--red);
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    line-height: 1;
+    margin-bottom: 16px;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+  }
+
+  .section-sub {
+    font-family: 'Kalam', cursive;
+    font-size: 1.15rem;
+    color: var(--ink);
+    max-width: 600px;
+    line-height: 1.5;
+    margin-bottom: 40px;
+  }
+
+  /* ========= STORY (Fresh Caught) ========= */
+  .story {
+    background: var(--teal-dark);
+    color: var(--cream);
+    overflow: hidden;
+  }
+  .story::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 10% 20%, rgba(232, 169, 28, 0.15) 0%, transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(192, 57, 43, 0.15) 0%, transparent 40%);
+  }
+
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .story .section-title { color: var(--yellow); }
+  .story .section-sub { color: var(--cream); }
+  .story .section-tag { background: var(--red); color: var(--cream); }
+
+  .story-img {
+    width: 100%;
+    border: 8px solid var(--cream);
+    box-shadow: 12px 12px 0 var(--red-deep), 12px 12px 40px rgba(0,0,0,0.5);
+    transform: rotate(2deg);
+    transition: transform 0.4s;
+  }
+  .story-img:hover { transform: rotate(0deg) scale(1.02); }
+
+  .story p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  .stamp {
+    display: inline-block;
+    border: 3px solid var(--yellow);
+    color: var(--yellow);
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    transform: rotate(-4deg);
+    margin-top: 16px;
+    font-size: 0.9rem;
+    background: rgba(0,0,0,0.2);
+  }
+
+  /* ========= EATS ========= */
+  .eats { background: var(--cream); }
+  .eats-header { text-align: center; margin-bottom: 50px; }
+  .eats-header .section-sub { margin-left: auto; margin-right: auto; }
+
+  .eats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .eat-card {
+    background: var(--cream-warm);
+    border: 4px solid var(--ink);
+    overflow: hidden;
+    box-shadow: 6px 6px 0 var(--teal);
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  .eat-card:nth-child(2) { box-shadow: 6px 6px 0 var(--red); transform: rotate(-1deg); }
+  .eat-card:nth-child(3) { box-shadow: 6px 6px 0 var(--yellow); transform: rotate(1deg); }
+  .eat-card:nth-child(4) { box-shadow: 6px 6px 0 var(--green); }
+
+  .eat-card:hover {
+    transform: translate(-4px, -4px) rotate(0deg);
+    box-shadow: 10px 10px 0 var(--ink);
+  }
+
+  .eat-img-wrap {
+    height: 220px;
+    overflow: hidden;
+    border-bottom: 4px solid var(--ink);
+  }
+
+  .eat-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  .eat-card:hover .eat-img-wrap img { transform: scale(1.1); }
+
+  .eat-content { padding: 20px; }
+
+  .eat-name {
+    font-family: 'Alfa Slab One', serif;
+    font-size: 1.4rem;
+    color: var(--red);
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+  }
+
+  .eat-desc {
+    font-family: 'Kalam', cursive;
+    font-size: 1rem;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+
+  /* ========= MENU PREVIEW ========= */
+  .menu-section {
+    background: var(--teal);
+    text-align: center;
+    color: var(--cream);
+  }
+  .menu-section .section-title { color: var(--yellow); }
+  .menu-section .section-sub { color: var(--cream); margin-left: auto; margin-right: auto; text-align: center; }
+  .menu-section .section-tag { background: var(--red); color: var(--cream); }
+
+  .menu-img {
+    max-width: 500px;
+    width: 100%;
+    border: 8px solid var(--cream);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    margin-top: 30px;
+    transition: transform 0.4s;
+    cursor: zoom-in;
+  }
+  .menu-img:hover { transform: scale(1.02) rotate(-1deg); }
+
+  .menu-tap-hint {
+    display: block;
+    margin-top: 14px;
+    font-family: 'Kalam', cursive;
+    font-size: 0.95rem;
+    color: var(--cream);
+    opacity: 0.85;
+    font-style: italic;
+  }
+
+  /* ========= LIGHTBOX ========= */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow: auto;
+    animation: fadeIn 0.25s ease;
+  }
+  .lightbox.open { display: flex; }
+
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .lightbox-img {
+    max-width: 100%;
+    max-height: 95vh;
+    width: auto;
+    height: auto;
+    cursor: zoom-in;
+    transition: transform 0.3s ease;
+    transform-origin: center center;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: pinch-zoom;
+  }
+  .lightbox-img.zoomed {
+    cursor: zoom-out;
+    max-width: none;
+    max-height: none;
+    transform: scale(2);
+  }
+
+  .lightbox-close {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    background: var(--red);
+    color: var(--cream);
+    border: 3px solid var(--cream);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  }
+  .lightbox-close:active { transform: scale(0.95); }
+
+  .lightbox-hint {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.7);
+    color: var(--cream);
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-family: 'Kalam', cursive;
+    font-size: 0.9rem;
+    z-index: 1001;
+    pointer-events: none;
+  }
+
+  /* ========= CTA ========= */
+  .cta {
+    background: var(--red);
+    color: var(--cream);
+    text-align: center;
+    padding: 80px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0, rgba(255,255,255,0.03) 2px, transparent 2px, transparent 20px);
+  }
+
+  .cta-content { position: relative; z-index: 2; max-width: 600px; margin: 0 auto; }
+
+  .cta .section-title { color: var(--cream); }
+
+  .cta-form {
+    display: flex;
+    gap: 0;
+    margin-top: 30px;
+    box-shadow: 6px 6px 0 var(--ink);
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-form input {
+    flex: 1;
+    padding: 16px 20px;
+    border: 4px solid var(--ink);
+    border-right: none;
+    font-family: 'Kalam', cursive;
+    font-size: 1rem;
+    background: var(--cream);
+    color: var(--ink);
+    outline: none;
+    min-width: 0;
+  }
+
+  .cta-form button {
+    background: var(--yellow);
+    color: var(--ink);
+    border: 4px solid var(--ink);
+    padding: 16px 28px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-size: 0.95rem;
+    white-space: nowrap;
+  }
+  .cta-form button:hover { background: var(--cream-warm); }
+
+  .form-note {
+    margin-top: 16px;
+    font-size: 0.9rem;
+    opacity: 0.85;
+    font-style: italic;
+  }
+
+  /* ========= FOOTER ========= */
+  footer {
+    background: var(--ink);
+    color: var(--cream);
+    text-align: center;
+    padding: 40px 24px;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+  }
+
+  footer .heart { color: var(--red); }
+
+  /* ========= RESPONSIVE ========= */
+  @media (max-width: 768px) {
+    .hero { padding: 20px 16px 40px; min-height: auto; }
+    .container { padding: 0 16px; }
+    section { padding: 60px 16px; }
+
+    .sign-board { padding: 28px 18px; transform: rotate(-0.5deg); box-shadow: 5px 5px 0 var(--red-deep); }
+    .sign-board::before, .sign-board::after { font-size: 1rem; }
+
+    .badge-top { font-size: 0.7rem; padding: 6px 16px; letter-spacing: 2px; margin-bottom: 24px; }
+
+    .title-line1 { font-size: 3.2rem; }
+    .title-line2 { font-size: 1.9rem; letter-spacing: 1px; }
+    .chicken-icon { width: 38px; height: 38px; }
+
+    .slogan-bar { margin: 12px -12px 0; padding: 8px 0; }
+    .slogan { font-size: 1.05rem; }
+    .slogan .dash { margin: 0 6px; }
+
+    .countdown-section { margin-top: 40px; }
+    .countdown { grid-template-columns: repeat(4, 1fr); gap: 6px; }
+    .count-box { padding: 12px 4px; border-width: 3px; box-shadow: 3px 3px 0 var(--ink); }
+    .count-num { font-size: 1.7rem; }
+    .count-unit { font-size: 0.55rem; letter-spacing: 1.5px; margin-top: 5px; }
+
+    .section-title { font-size: 2.1rem; }
+    .section-sub { font-size: 1rem; }
+    .section-tag { font-size: 0.65rem; letter-spacing: 2.5px; padding: 5px 14px; }
+
+    .story-grid { grid-template-columns: 1fr; gap: 30px; }
+    .story-img { box-shadow: 6px 6px 0 var(--red-deep); border-width: 5px; transform: rotate(1deg); }
+
+    .eats-grid { gap: 20px; grid-template-columns: 1fr; }
+    .eat-card, .eat-card:nth-child(2), .eat-card:nth-child(3) { transform: rotate(0); }
+    .eat-img-wrap { height: 200px; }
+
+    .menu-img { border-width: 5px; }
+
+    .cta-form { flex-direction: column; box-shadow: 4px 4px 0 var(--ink); }
+    .cta-form input { border-right: 4px solid var(--ink); border-bottom: none; padding: 14px 16px; }
+    .cta-form button { border-top: none; padding: 14px 20px; }
+
+    .palm-leaf { font-size: 4rem; opacity: 0.1; }
+    .palm-leaf.tl { top: -10px; left: -15px; }
+    .palm-leaf.tr { top: -10px; right: -15px; }
+
+    footer { font-size: 0.7rem; letter-spacing: 2px; padding: 30px 16px; }
+  }
+
+  @media (max-width: 380px) {
+    .title-line1 { font-size: 2.6rem; }
+    .title-line2 { font-size: 1.6rem; }
+    .count-num { font-size: 1.4rem; }
+    .count-unit { font-size: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <span class="palm-leaf tl">🌴</span>
+  <span class="palm-leaf tr">🌴</span>
+
+  <div class="badge-top">★ Coming Soon to a Beach Near You ★</div>
+
+  <div class="sign-board">
+    <h1 class="title-line1">Jay Fuller's
+      <svg class="chicken-icon" width="60" height="60" viewBox="0 0 100 100" fill="currentColor" style="color: var(--ink);">
+        <path d="M30 70 Q25 50 35 40 Q40 25 55 25 Q70 25 75 40 L80 35 Q85 35 85 45 L75 50 Q75 65 65 70 L65 80 L70 85 L55 85 L55 75 Q45 75 40 80 L30 80 L25 75 Z M55 35 A2 2 0 1 1 55 39 A2 2 0 1 1 55 35 Z M70 28 L75 22 L80 28 Z"/>
+      </svg>
+    </h1>
+    <h2 class="title-line2">CHICKEN SHACK</h2>
+    <div class="slogan-bar">
+      <p class="slogan"><span class="dash">—</span>Leave Fuller Than You Came.<span class="dash">—</span></p>
+    </div>
+  </div>
+
+  <div class="countdown-section">
+    <div class="countdown-label">★ Frying Up Something Special ★</div>
+    <div class="countdown" id="countdown">
+      <div class="count-box"><div class="count-num" id="days">00</div><div class="count-unit">Days</div></div>
+      <div class="count-box"><div class="count-num" id="hours">00</div><div class="count-unit">Hours</div></div>
+      <div class="count-box"><div class="count-num" id="minutes">00</div><div class="count-unit">Minutes</div></div>
+      <div class="count-box"><div class="count-num" id="seconds">00</div><div class="count-unit">Seconds</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ STORY ============ -->
+<section class="story">
+  <div class="container">
+    <div class="story-grid">
+      <div>
+        <div class="section-tag">★ The Fuller Promise ★</div>
+        <h2 class="section-title">Fresh-Caught.<br>Daily. By Jay.</h2>
+        <p>Every single chicken on our menu is hand-caught by Jay himself at the crack of dawn, right out of the Fuller Family Coop. No middleman. No shortcuts. Just one man, a pair of grippy shoes, and the eternal patience of a saint.</p>
+        <p>If a chicken made it to the fryer, Jay caught it. If a chicken got away, well… it'll be on the menu tomorrow.</p>
+        <span class="stamp">100% Hand-Caught Guarantee</span>
+      </div>
+      <div>
+        <img src="sandwich.png" alt="Jay catching chickens in the coop" class="story-img">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EATS ============ -->
+<section class="eats">
+  <div class="container">
+    <div class="eats-header">
+      <div class="section-tag">★ The Goods ★</div>
+      <h2 class="section-title">What's On The Way</h2>
+      <p class="section-sub">A small preview of the tropical, golden, get-sauce-on-your-shirt situation we're cooking up.</p>
+    </div>
+
+    <div class="eats-grid">
+      <div class="eat-card">
+        <div class="eat-img-wrap"><img src="menu.png" alt="Spicy chicken sandwich with Fuller Hot sauce"></div>
+        <div class="eat-content">
+          <h3 class="eat-name">The Fuller Hot</h3>
+          <p class="eat-desc">Hand-breaded chicken, slaw, pickles, and a sauce that will absolutely change your weekend.</p>
+        </div>
+      </div>
+      <div class="eat-card">
+        <div class="eat-img-wrap"><img src="wings.png" alt="Basket of saucy wings with ranch and celery"></div>
+        <div class="eat-content">
+          <h3 class="eat-name">Beach Wings</h3>
+          <p class="eat-desc">Crispy, saucy, herby. Served in a basket because plates are for people in a hurry.</p>
+        </div>
+      </div>
+      <div class="eat-card">
+        <div class="eat-img-wrap"><img src="jay-chickens.png" alt="Bowl of baked mac and cheese"></div>
+        <div class="eat-content">
+          <h3 class="eat-name">Shack Mac</h3>
+          <p class="eat-desc">Three cheeses, a crunchy top, and zero apologies. The side that thinks it's a main.</p>
+        </div>
+      </div>
+      <div class="eat-card">
+        <div class="eat-img-wrap"><img src="coleslaw.png" alt="Coconut coleslaw"></div>
+        <div class="eat-content">
+          <h3 class="eat-name">Coconut Slaw</h3>
+          <p class="eat-desc">Crunchy. Creamy. Vaguely tropical. The only vegetable that survives Jay's grill.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MENU PREVIEW ============ -->
+<section class="menu-section">
+  <div class="container">
+    <div class="section-tag">★ Sneak Peek ★</div>
+    <h2 class="section-title">The Full Menu</h2>
+    <p class="section-sub">Buckets. Sandwiches. Sides. Sauces ranging from "polite" to "regret." Take a look.</p>
+    <img src="mac-cheese.png" alt="Full Jay Fuller's Chicken Shack menu" class="menu-img" id="menuImg" onclick="openLightbox()">
+    <span class="menu-tap-hint">👆 Tap to zoom in</span>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta">
+  <div class="cta-content">
+    <div class="section-tag" style="background: var(--yellow); color: var(--ink);">★ Be First In Line ★</div>
+    <h2 class="section-title">Don't Miss Opening Day</h2>
+    <p class="section-sub" style="color: var(--cream); margin-left: auto; margin-right: auto;">Drop your email and we'll let you know the second the grill fires up. We promise to only email when there's actual chicken news. Which, frankly, is the best kind of news.</p>
+    <form class="cta-form" onsubmit="handleSubmit(event)">
+      <input type="email" placeholder="your@email.com" required>
+      <button type="submit">Notify Me</button>
+    </form>
+    <p class="form-note" id="formNote">No spam. Just chicken. Pinky promise from Jay.</p>
+  </div>
+</section>
+
+<!-- ============ LIGHTBOX ============ -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox(event)" aria-label="Close">✕</button>
+  <img src="mac-cheese.png" alt="Full menu zoomed" class="lightbox-img" id="lightboxImg" onclick="toggleZoom(event)">
+  <div class="lightbox-hint" id="lightboxHint">Pinch to zoom · Tap image to zoom · Tap outside to close</div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  © 2026 Jay Fuller's Chicken Shack · Made with <span class="heart">♥</span> & Hot Sauce
+</footer>
+
+<script>
+  // Countdown — set this to whatever opening date you want.
+  // Currently set to ~90 days from when this page is viewed.
+  const openingDate = new Date();
+  openingDate.setDate(openingDate.getDate() + 90);
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = openingDate.getTime() - now;
+
+    if (distance < 0) {
+      document.getElementById('countdown').innerHTML = '<div style="grid-column: 1/-1; font-family: Pacifico, cursive; font-size: 2.5rem; color: var(--red);">WE\'RE OPEN! Get in here!</div>';
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById('days').textContent = String(days).padStart(2, '0');
+    document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+    document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+    document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const note = document.getElementById('formNote');
+    const input = e.target.querySelector('input');
+    note.textContent = "🐔 You're on the list! Jay just high-fived a chicken in your honor.";
+    note.style.color = 'var(--yellow)';
+    note.style.fontWeight = '700';
+    input.value = '';
+  }
+
+  // Lightbox
+  function openLightbox() {
+    const lb = document.getElementById('lightbox');
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    // hide hint after 3 seconds
+    setTimeout(() => {
+      const hint = document.getElementById('lightboxHint');
+      if (hint) hint.style.opacity = '0';
+    }, 3000);
+  }
+
+  function closeLightbox(e) {
+    // only close if clicking the backdrop or the close button, not the image
+    if (e && e.target.id === 'lightboxImg') return;
+    const lb = document.getElementById('lightbox');
+    const img = document.getElementById('lightboxImg');
+    lb.classList.remove('open');
+    img.classList.remove('zoomed');
+    document.body.style.overflow = '';
+    const hint = document.getElementById('lightboxHint');
+    if (hint) hint.style.opacity = '';
+  }
+
+  function toggleZoom(e) {
+    e.stopPropagation();
+    const img = document.getElementById('lightboxImg');
+    img.classList.toggle('zoomed');
+  }
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox({});
+  });
+</script>
+
+</body>
+</html>
